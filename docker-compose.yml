@@ -6,7 +6,7 @@ services:
         ports: 
             - 80:80
         volumes:
-            - C:\Users\arlio\OneDrive\Desktop\Cognitive\Containers\NGINX:/etc/nginx/conf.d
+            - <local drive>\NGINX:/etc/nginx/conf.d
             
         depends_on: 
             - luis1
@@ -18,12 +18,12 @@ services:
         ports: 
             - 5000:5000
         volumes: 
-            - C:\Users\arlio\OneDrive\Desktop\Cognitive\Containers\Luis\input:/input
-            - C:\Users\arlio\OneDrive\Desktop\Cognitive\Containers\Luis\output:/output
+            - <local drive>\input:/input
+            - <local drive>\output:/output
         environment:
             - Eula=accept
-            - Billing=https://westeurope.api.cognitive.microsoft.com 
-            - ApiKey=1002428e39cf48118f6d378ee1499bb7
+            - Billing=<endpoint url> 
+            - ApiKey=<ApiKey>
 
     luis2: #LUIS Instance 2
         image: mcr.microsoft.com/azure-cognitive-services/language/luis
@@ -31,12 +31,12 @@ services:
         ports: 
             - 5001:5000
         volumes: 
-            - C:\Users\arlio\OneDrive\Desktop\Cognitive\Containers\Luis\input:/input
-            - C:\Users\arlio\OneDrive\Desktop\Cognitive\Containers\Luis\output:/output
+            - <local drive>\input:/input
+            - <local drive>\output:/output
         environment:
             - Eula=accept
-            - Billing=https://westeurope.api.cognitive.microsoft.com 
-            - ApiKey=1002428e39cf48118f6d378ee1499bb7
+            - Billing=<endpoint url>
+            - ApiKey=<ApiKey>
 
     TextAnalytics: # Text Analytics
         image: mcr.microsoft.com/azure-cognitive-services/textanalytics/sentiment
@@ -45,8 +45,8 @@ services:
             - 5002:5000
         environment:
             - Eula=accept 
-            - Billing=https://testanalytics.cognitiveservices.azure.com/
-            - ApiKey=a8b87a724e26498fa6435f4593cf5c07
+            - Billing=<endpoint url>
+            - ApiKey=<ApiKey>
 
     liteSQL: # SQL Instance
         image: mcr.microsoft.com/azure-sql-edge
@@ -58,5 +58,5 @@ services:
             - MSSQL_SA_PASSWORD=Aa123456789
             - MSSQL_PID=Developer
         volumes: 
-            - C:\Users\arlio\OneDrive\Desktop\Cognitive\Containers\DB\Data:/var/opt/mssql/data
-            - C:\Users\arlio\OneDrive\Desktop\Cognitive\Containers\DB\log:/var/opt/mssql/log
+            - <local drive>\DB\Data:/var/opt/mssql/data
+            - <local drive>\DB\log:/var/opt/mssql/log
