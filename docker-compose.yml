@@ -6,7 +6,7 @@ services:
         ports: 
             - 80:80
         volumes:
-            - <local drive>\NGINX:/etc/nginx/conf.d
+            - <local drive>\NGINX:/etc/nginx/conf.d #need changes
             
         depends_on: 
             - luis1
@@ -18,12 +18,12 @@ services:
         ports: 
             - 5000:5000
         volumes: 
-            - <local drive>\input:/input
-            - <local drive>\output:/output
+            - <local drive>\input:/input #need changes
+            - <local drive>\output:/output #need changes
         environment:
             - Eula=accept
-            - Billing=<endpoint url> 
-            - ApiKey=<ApiKey>
+            - Billing=<endpoint url> #need changes
+            - ApiKey=<ApiKey> #need changes
 
     luis2: #LUIS Instance 2
         image: mcr.microsoft.com/azure-cognitive-services/language/luis
@@ -31,8 +31,8 @@ services:
         ports: 
             - 5001:5000
         volumes: 
-            - <local drive>\input:/input
-            - <local drive>\output:/output
+            - <local drive>\input:/input #need changes
+            - <local drive>\output:/output #need changes
         environment:
             - Eula=accept
             - Billing=<endpoint url>
@@ -45,8 +45,8 @@ services:
             - 5002:5000
         environment:
             - Eula=accept 
-            - Billing=<endpoint url>
-            - ApiKey=<ApiKey>
+            - Billing=<endpoint url> #need changes
+            - ApiKey=<ApiKey> #need changes
 
     liteSQL: # SQL Instance
         image: mcr.microsoft.com/azure-sql-edge
@@ -58,5 +58,5 @@ services:
             - MSSQL_SA_PASSWORD=Aa123456789
             - MSSQL_PID=Developer
         volumes: 
-            - <local drive>\DB\Data:/var/opt/mssql/data
-            - <local drive>\DB\log:/var/opt/mssql/log
+            - <local drive>\DB\Data:/var/opt/mssql/data #need changes
+            - <local drive>\DB\log:/var/opt/mssql/log #need changes
