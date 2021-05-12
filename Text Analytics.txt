@@ -1,0 +1,29 @@
+docker run --rm -it -p 5000:5000 --memory 8g --cpus 1 mcr.microsoft.com/azure-cognitive-services/textanalytics/sentiment Eula=accept Billing=https://mvp-testanalytics.cognitiveservices.azure.com/ ApiKey=a6b87a724e26498fa6435f4593cf5c07
+
+docker run --rm -it -p 5000:5000 --mount type=bind,src=C:\Users\arlio\OneDrive\Desktop\Cognitive\Containers\Luis\input,target=/input --mount type=bind,src=C:\Users\arlio\OneDrive\Desktop\Cognitive\Containers\Luis\output\,target=/output mcr.microsoft.com/azure-cognitive-services/language/luis Eula=accept Billing=https://westeurope.api.cognitive.microsoft.com ApiKey=1902428e39cf48118f6d378ee1499bb7
+
+
+appid: 
+226be23b-f283-4a5f-9750-1873cf0add45
+Slot:
+PRODUCTION
+
+Query:
+i want to book a flight from Paris to London from 1-May-2022 till 20-May-2022
+
+Good:
+curl -X GET "http://localhost:5000/luis/v3.0-preview/apps/226be23b-f283-4a5f-9750-1873cf0add45/slots/PRODUCTION/predict?query=i%20want%20to%20book%20a%20flight%20from%20Paris%20to%20London%20from%201-May-2022%20till%2020-May-2022&log=true" -H "accept: application/json"
+http://localhost:5000/luis/v3.0-preview/apps/226be23b-f283-4a5f-9750-1873cf0add45/slots/PRODUCTION/predict?query=i%20want%20to%20book%20a%20flight%20from%20Paris%20to%20London%20from%201-May-2022%20till%2020-May-2022&log=true
+
+
+Bad:
+http://localhost:5000/luis/v3.0-preview/apps/226be23b-f283-4a5f-9750-1873cf0add45/slots/PRODUCTION/predict?query=blablabla
+curl -X GET "http://localhost:5000/luis/v3.0-preview/apps/226be23b-f283-4a5f-9750-1873cf0add45/slots/PRODUCTION/predict?query=blablabla" -H "accept: application/json"
+
+
+textanalytics:
+curl -X POST "http://localhost:5002/text/analytics/v3.1-preview.4/sentiment?showStats=true&model-version=latest&stringIndexType=2" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"documents\":[{\"language\":\"en\",\"isLanguageDefaulted\":false,\"id\":\"1-en\",\"text\":\"Hello world. I'm running cognitive services on a container, How cool is that? \"}]}"
+
+
+
+http://liordemoedge1.westeurope.cloudapp.azure.com:5000/
